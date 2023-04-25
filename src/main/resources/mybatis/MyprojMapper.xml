@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.co.kr.mapper.MyprojMapper">
+
+	<!--select all-->
+	<select id="myprojList" resultType="com.co.kr.domain.MyprojListDomain">
+	  SELECT my_seq, mb_id, my_title, my_content, my_create_at, my_update_at, my_num
+	  FROM proj.myproj order by my_update_at desc
+	</select>
+
+	<!-- content insert -->
+	<insert id="contentMyproj" parameterType="com.co.kr.domain.MyprojContentDomain"
+	useGeneratedKeys="true"
+        keyProperty="mySeq" keyColumn="my_seq">
+	
+        INSERT INTO proj.myproj (
+            mb_id,   
+						my_title,                         
+						my_content  
+        )
+        VALUES (
+            #{mbId},
+            #{myTitle},
+            #{myContent},
+            #{myNum}
+        )
+	</insert>
+
+		<!-- Content update -->
+    <update id="myContentUpdate" parameterType="com.co.kr.domain.MyprojContentDomain">
+        UPDATE proj.myproj SET
+                my_seq=#{mySeq},
+                mb_id=#{mbId},
+                my_title=#{myTitle},
+                my_num=#{myNum},
+                my_content=#{myContent}, 
+                my_update_at=now()  
+        WHERE my_seq=#{mySeq}
+    </update>
+
+	<!-- Content delete -->
+    <delete id="myContentRemove" parameterType="hashMap">
+       DELETE FROM proj.myproj WHERE my_seq=#{mySeq}
+    </delete>
+    
+    <!-- content -->
+	<select id="myprojSelectOne" resultType="com.co.kr.domain.MyprojListDomain" parameterType="map">
+	    SELECT my_seq, mb_id, my_title, my_content, my_create_at, my_update_at, my_num
+	    FROM proj.myproj where my_seq = #{mySeq}
+	</select>	
+	
+</mapper>

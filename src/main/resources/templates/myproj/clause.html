@@ -7,39 +7,41 @@
     </button>
 </div>
 
-<div class="title" style="color:#00a2be">보드 리스트</div>
+<div class="title" style="color: #00a2be">영화 리스트</div>
 <form role="form" action="upload" method="post" enctype="multipart/form-data">
     <div class="section form">
        <table>
         <colgroup>
             <col style="width:10%"/>
-            <col style="width:90%"/>
+            <col style="width:80%"/>
+            <col style="width:10%"/>
         </colgroup>
         <tbody>
             <tr> 
-                <th>제목</th>
+                <th>영화이름</th>
                 <td>
-                    <input type="hidden" name="seq" placeholder="글번호" required/>
-                    <input type="text" name="title" placeholder="제목" required/>
+                    <input type="hidden" name="pjseq" placeholder="글번호" required/>
+                    <input type="text" name="pjtitle" placeholder="제목" required/>
                 </td>
             </tr>
             
             <tr> 
-               <th>내용</th>
-                <td >
-                   <textarea colspan="2" id="story" name="content" placeholder="내용을 적어주세요." rows="5" cols="200" required></textarea>
+               <th>소개</th>
+                <td>
+                   <textarea colspan="2" id="mystory" name="pjcontent" placeholder="내용을 적어주세요." rows="5" cols="200" required></textarea>
                 </td>
             </tr>
+            
             <tr> 
-               <th><label for="file">첨부파일</label></th>
+               <th>평점</th>
                 <td>
-                    <input type="file" id="file" name="files" multiple />
+                   <input type="mynum" name="pjnum" placeholder="평점을 적어주세요.(1~5점)" required/>
                 </td>
             </tr>
         </tbody>
        </table>
        <div class="button">
-            <button type="submit" style="margin-right: 11px">글쓰기</button>
+            <button type="submit" style="margin-right: 11px">올리기</button>
        </div>
     </div>
 

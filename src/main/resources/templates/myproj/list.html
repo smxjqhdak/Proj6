@@ -1,0 +1,55 @@
+<html xmlns:th="//www.thymeleaf.org">
+<div class="section list">
+    <table>
+        <th:block th:if="${myitems}">
+            <colgroup>
+                <col style="width: 5%"/>
+                <col style="width: 30%"/>
+                <col style="width: 10%"/>
+                <col style="width: 20%"/>
+                <col style="width: 15%"/>
+                <col style="width: 15%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>글번호</th>
+                    <th>영화이름</th>
+                    <th>아이디</th>
+                    <th>점수(1~5점)</th>
+                    <th>등록일</th>
+                    <th>수정일</th>
+                </tr>
+            </thead>
+                       
+            <tbody>
+              <tr th:each="myitem : ${myitems}">
+                  <td th:text="${myitem.mySeq}"></td>
+                  <td><a th:text="${myitem.myTitle}" th:href="@{/mydetail(mySeq = ${myitem.mySeq})}"></a></td>
+                  <td th:text="${myitem.mbId}"></td>
+                  <td th:text="${myitem.myNum}"></td>             
+                  <td th:text="${myitem.myCreateAt}"></td>
+                  <td th:text="${myitem.myUpdateAt}"></td>
+              </tr>
+	        </th:block>    
+        </tbody>
+    </table>
+    
+    <th:block th:if="${mydetail}">   
+        <h1 style="padding: 30px 0;" th:text="${mydetail.myTitle}"></h1>
+        <div style="text-align: right;">
+            <span style="color: #00a2be;">글번호 </span> <span th:text="${mydetail.mySeq}"></span> <span style="color: #00a2be"> | </span>
+            <span style="color: #00a2be">작성자 </span> <span th:text="${mydetail.mbId}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${mydetail.myCreateAt}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${mydetail.myUpdateAt}"></span> 
+        </div>
+
+	<th:block th:if="${mydetail.mbId == session.id}">	
+        <div style="padding: 30px 0; text-align:right;">
+		        <a th:href="@{/edit(mySeq = ${mydetail.mySeq})}"><button>수정</button></a>
+            <a th:href="@{/remove(mySeq = ${mydetail.mySeq})}"><button>삭제</button></a>
+            <a th:href="@{myProj}"><button style="background-color: #00a2be; color: white; margin-left: 20px">목록으로</button></a>
+        </div>
+	</th:block> 
+	     
+    </th:block>
+</div>

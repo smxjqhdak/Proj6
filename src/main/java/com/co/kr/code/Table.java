@@ -7,7 +7,8 @@ public enum Table {
 
 	MEMBER("member"),
 	FILES("files"),
-	BOARD("board");
+	BOARD("board"),
+	MYPROJ("myproj");
 	
 	private String table;
 
